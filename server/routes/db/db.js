@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Item = require("../../model/Item");
+const Question = require("../../model/Question");
 // Base route
 router.get("/", async (req, res) => {
 	res.json({ message: "Index for db" });
@@ -41,4 +42,43 @@ async function get_items_handler(req, res, next) {
 		next(error);
 	}
 }
+
+// Question
+
+router.get("/get_questionss", get_questions_handler);
+router.post("/get_questions", get_questions_handler);
+// Create an item
+router.post("/create_question", async (req, res, next) => {
+	try {
+		const question = await create_question(req.body);
+		res.json({
+			question: question,
+			description: "Successfully created the question.",
+		});
+	} catch (error) {
+		next(error);
+	}
+});
+
+async function create_question(query) {
+	let question = await Question.create(query);
+	let saved_question = await question.save();
+	return saved_question;
+}
+async function get_questions(query) {
+	let questions = await Question.find(query);
+	return questions;
+}
+async function get_questions_handler(req, res, next) {
+	try {
+		const questions = await get_questions(req.body || {});
+		res.json({
+			questions: questions,
+			description: "Successfully retrieved questions.",
+		});
+	} catch (error) {
+		next(error);
+	}
+}
+
 module.exports.router = router;
