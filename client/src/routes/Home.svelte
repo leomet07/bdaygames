@@ -1,7 +1,10 @@
 <script>
+	import Switch from "../components/Switch.svelte";
+
+	let isMale = false;
+
 	let items = [];
-	let forMale = true;
-	let forFemale = true;
+
 	(async () => {
 		items = await get_items({});
 	})();
@@ -19,44 +22,40 @@
 		console.log(json.items);
 		return json.items;
 	}
+
+	function capatalizeFirstLetter(str) {
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	}
 </script>
 
 <main id="home">
-	<h1>Truth Or Dare!</h1>
-	<div>
-		<input
-			name="forMale"
-			id="forMale"
-			class="checkbox"
-			type="checkbox"
-			bind:checked={forMale}
-		/>
-		<label for="forMale">For Lads</label>
-	</div>
-	<br />
-	<div>
-		<input
-			name="forFemale"
-			id="forFemale"
-			class="checkbox"
-			type="checkbox"
-			bind:checked={forFemale}
-		/>
-		<label for="forFemale">For Gals</label>
-	</div>
-	<div>
-		<ol>
-			{#each items as item}
-				{#if (item.gender == "f" && forFemale) || (item.gender == "m" && forMale)}
-					<li class={"stylefor" + item.gender}>
-						-
-						{item.text}
-					</li>
-				{:else}
-					<div />
-				{/if}
-			{/each}
-		</ol>
+	<h1>Birthday party games!</h1>
+	<div id="tord">
+		<h1 class="title">Truth Or Dare!</h1>
+		<div id="forwhoswitch">
+			<Switch bind:checked={isMale} />
+			<br />
+			{isMale ? "Lads" : "Gals"}
+		</div>
+
+		<div>
+			<ol>
+				{#each items as item}
+					{#if (item.gender == "f" && !isMale) || (item.gender == "m" && isMale)}
+						<li id="tordtext">
+							<span class={"label" + item.type}
+								>{capatalizeFirstLetter(item.type)}:</span
+							>
+							<span class={"stylefor" + item.gender}>
+								{item.text}
+							</span>
+						</li>
+					{:else}
+						<div />
+					{/if}
+				{/each}
+			</ol>
+		</div>
 	</div>
 </main>
 
@@ -72,9 +71,36 @@
 	}
 
 	.styleforf {
-		color: red;
+		color: #de6d59;
 	}
 	.styleform {
-		color: blue;
+		color: #2196f3;
+	}
+
+	#tord {
+		width: 50%;
+		text-align: left;
+		border: 1px solid black;
+	}
+
+	.title {
+		text-align: center;
+	}
+
+	#forwhoswitch {
+		text-align: center;
+	}
+
+	#tordtext {
+		margin-bottom: 10px;
+	}
+
+	.labeltruth {
+		background-color: rgb(144, 144, 255);
+		color: white;
+	}
+	.labeldare {
+		background-color: rgb(255, 93, 93);
+		color: white;
 	}
 </style>
