@@ -66,7 +66,8 @@
 		min-width: 30vw;
 		text-align: center;
 		display: inline-block;
-
+		padding-right: 16vw;
+		padding-left: 1vw;
 		margin-right: 0;
 		width: 97vw;
 	}
@@ -94,7 +95,17 @@
 
 	@media only screen and (min-width: 1250px) {
 		#tord {
-			width: 80vw;
+			width: 55vw;
+			text-align: left;
+		}
+		.title {
+			text-align: left;
+			padding-left: 6vw;
+		}
+
+		#forwhoswitch {
+			text-align: left;
+			padding-left: 10vw;
 		}
 	}
 </style>

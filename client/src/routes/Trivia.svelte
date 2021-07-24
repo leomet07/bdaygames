@@ -36,7 +36,7 @@
 </script>
 
 <main id="trivia">
-	<h1>Trivia</h1>
+	<h1 class="title">Trivia</h1>
 
 	<!-- svelte-ignore a11y-no-onchange -->
 	<select id="change_catagory_selecter" on:change={change_catagory}>
@@ -76,16 +76,28 @@
 
 <style>
 	#trivia {
+		min-width: 30vw;
 		text-align: center;
-
-		padding-bottom: 60px;
-		width: 97vw;
-		margin-right: 0;
 		display: inline-block;
+		padding-right: 16vw;
+		padding-left: 1vw;
+		margin-right: 0;
+		width: 97vw;
 	}
 	@media only screen and (min-width: 1250px) {
 		#trivia {
-			width: 80vw;
+			width: 55vw;
+			text-align: left;
+		}
+
+		.title {
+			text-align: left;
+			padding-left: 8vw;
+		}
+
+		#change_catagory_selecter {
+			text-align: center;
+			margin-left: 1vw;
 		}
 	}
 </style>
