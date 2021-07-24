@@ -19,29 +19,6 @@
 		console.log(json.items);
 		return json.items;
 	}
-	async function changeHandler(change) {
-		console.log("In get items");
-		if (change) {
-			if (change.srcElement.id == "forMale") {
-				forMale = change.srcElement.checked;
-			} else if (change.srcElement.id == "forFemale") {
-				forFemale = change.srcElement.checked;
-			}
-		}
-
-		let body = {};
-		if (forMale && forFemale) {
-			body = {};
-		} else if (forMale) {
-			// If both, stay undefined
-			body.gender = "m";
-		} else if (forFemale) {
-			// If both, stay undefined
-			body.gender = "f";
-		}
-
-		items = await get_items(body);
-	}
 </script>
 
 <main id="home">
@@ -52,8 +29,7 @@
 			id="forMale"
 			class="checkbox"
 			type="checkbox"
-			on:change={changeHandler}
-			checked
+			bind:checked={forMale}
 		/>
 		<label for="forMale">For Lads</label>
 	</div>
@@ -64,18 +40,23 @@
 			id="forFemale"
 			class="checkbox"
 			type="checkbox"
-			on:change={changeHandler}
-			checked
+			bind:checked={forFemale}
 		/>
 		<label for="forFemale">For Gals</label>
 	</div>
 	<div>
-		{#each items as item}
-			<p>
-				-
-				{item.text}
-			</p>
-		{/each}
+		<ol>
+			{#each items as item}
+				{#if (item.gender == "f" && forFemale) || (item.gender == "m" && forMale)}
+					<li class={"stylefor" + item.gender}>
+						-
+						{item.text}
+					</li>
+				{:else}
+					<div />
+				{/if}
+			{/each}
+		</ol>
 	</div>
 </main>
 
@@ -88,5 +69,12 @@
 	label {
 		vertical-align: middle;
 		display: inline-block;
+	}
+
+	.styleforf {
+		color: red;
+	}
+	.styleform {
+		color: blue;
 	}
 </style>
