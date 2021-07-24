@@ -37,22 +37,20 @@
 	</div>
 
 	<div>
-		<ol>
-			{#each items as item}
-				{#if (item.gender == "f" && !isMale) || (item.gender == "m" && isMale)}
-					<li id="tordtext">
-						<span class={"label" + item.type}
-							>{capatalizeFirstLetter(item.type)}:</span
-						>
-						<span class={"stylefor" + item.gender}>
-							{item.text}
-						</span>
-					</li>
-				{:else}
-					<div />
-				{/if}
-			{/each}
-		</ol>
+		{#each items as item, index}
+			{#if (item.gender == "f" && !isMale) || (item.gender == "m" && isMale)}
+				<p id="tordtext">
+					<span class={"label" + item.type}
+						>{capatalizeFirstLetter(item.type)}:</span
+					>
+					<span class={"stylefor" + item.gender}>
+						{item.text}
+					</span>
+				</p>
+			{:else}
+				<div />
+			{/if}
+		{/each}
 	</div>
 </div>
 
@@ -67,8 +65,10 @@
 	#tord {
 		min-width: 30vw;
 		text-align: center;
-		/* border: 1px solid black; */
 		display: inline-block;
+
+		margin-right: 0;
+		width: 97vw;
 	}
 
 	.title {
@@ -90,5 +90,11 @@
 	.labeldare {
 		background-color: rgb(255, 93, 93);
 		color: white;
+	}
+
+	@media only screen and (min-width: 1250px) {
+		#tord {
+			width: 80vw;
+		}
 	}
 </style>

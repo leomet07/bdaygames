@@ -5,7 +5,7 @@
 	import About from "./routes/About.svelte";
 	import TORD from "./routes/TORD.svelte";
 	import Trivia from "./routes/Trivia.svelte";
-
+	import People from "./components/People.svelte";
 	window.BASE_URL = "https://bdaygames.herokuapp.com";
 	if (
 		window.location.hostname == "localhost" ||
@@ -27,9 +27,14 @@
 	</nav>
 	<div>
 		<main class="route">
-			<Route path="tord"><TORD /></Route>
-			<Route path="trivia"><Trivia /></Route>
+			<Route path="tord">
+				<div class="withsidebar"><People /><TORD /></div>
+			</Route>
+			<Route path="trivia">
+				<div class="withsidebar"><People /><Trivia /></div>
+			</Route>
 			<Route path="about"><About /></Route>
+
 			<Route path="/"><Home /></Route>
 		</main>
 	</div>
@@ -41,5 +46,15 @@
 	}
 	.route {
 		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+
+	@media only screen and (min-width: 1250px) {
+		.withsidebar {
+			display: flex;
+			justify-content: center;
+			/* align-items: center; */
+		}
 	}
 </style>

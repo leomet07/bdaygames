@@ -77,6 +77,15 @@
 <style>
 	#trivia {
 		text-align: center;
+
 		padding-bottom: 60px;
+		width: 97vw;
+		margin-right: 0;
+		display: inline-block;
+	}
+	@media only screen and (min-width: 1250px) {
+		#trivia {
+			width: 80vw;
+		}
 	}
 </style>
