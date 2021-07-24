@@ -27,9 +27,9 @@
 	</nav>
 	<div>
 		<main class="route">
-			<Route path="tord" component={TORD} />
-			<Route path="trivia" component={Trivia} />
-			<Route path="about" component={About} />
+			<Route path="tord"><TORD /></Route>
+			<Route path="trivia"><Trivia /></Route>
+			<Route path="about"><About /></Route>
 			<Route path="/"><Home /></Route>
 		</main>
 	</div>

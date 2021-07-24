@@ -1,21 +1,30 @@
 <script>
-	import { bubble } from "svelte/internal";
+	import { triviaquestions } from "../stores";
+	export let index;
 
-	export let question;
 	let revealed = false;
-	console.log(question);
 
 	let bubbles = [];
+	let questiontext;
 
-	for (let incorrect_answer of question.incorrect_answers) {
-		bubbles.push({ text: incorrect_answer, correct: false });
+	function updatebubbles(val) {
+		const question = val[index];
+
+		questiontext = question.question;
+
+		// console.log("question", question);
+		bubbles = [];
+		for (let incorrect_answer of question.incorrect_answers) {
+			bubbles.push({ text: incorrect_answer, correct: false });
+		}
+
+		bubbles.push({ text: question.correct_answer, correct: true });
+
+		bubbles.sort(() => Math.random() - 0.5);
 	}
 
-	bubbles.push({ text: question.correct_answer, correct: true });
-
-	bubbles.sort(() => Math.random() - 0.5);
-
-	console.log({ bubbles });
+	triviaquestions.subscribe(updatebubbles);
+	updatebubbles($triviaquestions);
 
 	function choose(par) {
 		// const element = par.target;
@@ -26,9 +35,9 @@
 	}
 </script>
 
-<p id="question">Question: {@html question.question}</p>
+<p id="question">Question: {@html questiontext}</p>
 
-<div>
+<div id="bubbles">
 	{#each bubbles as bubble}
 		<div class="bubblecontainer {revealed ? 'revealed' : ''}">
 			<span
