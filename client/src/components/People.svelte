@@ -42,7 +42,7 @@
 			<button on:click={increment}>Increment</button>
 		</div>
 
-		<form on:submit={addPlayer}>
+		<form autocomplete="off" on:submit={addPlayer}>
 			<input type="text" id="playername" />
 			<input value="Add Player" type="submit" />
 		</form>

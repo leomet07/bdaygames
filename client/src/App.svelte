@@ -5,6 +5,7 @@
 	import About from "./routes/About.svelte";
 	import TORD from "./routes/TORD.svelte";
 	import Trivia from "./routes/Trivia.svelte";
+	import Choose from "./routes/Choose.svelte";
 	import People from "./components/People.svelte";
 	window.BASE_URL = "https://bdaygames.herokuapp.com";
 	if (
@@ -23,6 +24,7 @@
 		<Link to="/">Home</Link> |
 		<Link to="/tord">TORD</Link> |
 		<Link to="/trivia">Trivia</Link> |
+		<Link to="/choose">Choose</Link> |
 		<Link to="about">About</Link>
 	</nav>
 	<div>
@@ -32,6 +34,9 @@
 			</Route>
 			<Route path="trivia">
 				<div class="withsidebar"><People /><Trivia /></div>
+			</Route>
+			<Route path="choose">
+				<div class="withsidebar"><People /><Choose /></div>
 			</Route>
 			<Route path="about"><About /></Route>
 
