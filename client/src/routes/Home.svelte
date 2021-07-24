@@ -64,11 +64,6 @@
 		text-align: center;
 		padding-bottom: 60px;
 	}
-	.checkbox,
-	label {
-		vertical-align: middle;
-		display: inline-block;
-	}
 
 	.styleforf {
 		color: #de6d59;
