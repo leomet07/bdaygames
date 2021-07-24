@@ -3,6 +3,7 @@
 	import { Router, Link, Route } from "svelte-routing";
 	import Home from "./routes/Home.svelte";
 	import About from "./routes/About.svelte";
+	import TORD from "./routes/TORD.svelte";
 
 	window.BASE_URL = "https://bdaygames.herokuapp.com";
 	if (
@@ -19,10 +20,12 @@
 <Router {url}>
 	<nav>
 		<Link to="/">Home</Link> |
+		<Link to="/tord">TORD</Link> |
 		<Link to="about">About</Link>
 	</nav>
 	<div>
 		<main class="route">
+			<Route path="tord" component={TORD} />
 			<Route path="about" component={About} />
 			<Route path="/"><Home /></Route>
 		</main>
