@@ -22,6 +22,8 @@
 		bubbles.push({ text: question.correct_answer, correct: true });
 
 		bubbles = shuffle(bubbles);
+
+		revealed = false;
 	}
 
 	triviaquestions.subscribe(updatebubbles);
