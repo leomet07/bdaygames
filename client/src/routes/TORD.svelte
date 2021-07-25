@@ -20,7 +20,8 @@
 
 		let json = await response.json();
 		console.log(json.items);
-		return json.items;
+
+		return json.items.sort(() => Math.random() - 0.5);
 	}
 
 	function capatalizeFirstLetter(str) {

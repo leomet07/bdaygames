@@ -20,7 +20,7 @@
 
 		let json = await response.json();
 
-		return json.questions;
+		return json.questions.sort(() => Math.random() - 0.5);
 	}
 
 	function getRandomInt(max) {

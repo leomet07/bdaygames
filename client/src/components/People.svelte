@@ -7,10 +7,11 @@
 		let input = document.getElementById("playername");
 
 		let playername = input.value;
+		if (playername) {
+			$players = [...$players, { name: playername }];
 
-		$players = [...$players, { name: playername }];
-
-		input.value = "";
+			input.value = "";
+		}
 	}
 
 	async function increment() {
