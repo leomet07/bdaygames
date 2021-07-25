@@ -59,8 +59,10 @@
 			</div>
 
 			{#if items.length > 0}
-				{$players[$turn_index].name}, your random TORD is #{chosennum +
-					1}, {items[chosennum].text}
+				<h2>
+					{$players[$turn_index].name}, your random TORD is #{chosennum +
+						1}, {items[chosennum].text}
+				</h2>
 			{:else}
 				<p>Loading</p>
 			{/if}
