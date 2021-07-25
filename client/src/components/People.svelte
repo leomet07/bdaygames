@@ -72,12 +72,14 @@
 		padding: 0;
 		display: inline-block;
 
+		margin-top: 10px;
 		margin-bottom: 10px;
 	}
 
 	#floater {
 		text-align: center;
 		border: 1px solid black;
+		border-radius: 15px;
 	}
 
 	@media only screen and (min-width: 1250px) {
