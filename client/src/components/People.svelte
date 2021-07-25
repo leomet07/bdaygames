@@ -44,7 +44,7 @@
 
 		<form autocomplete="off" on:submit={addPlayer}>
 			<input type="text" id="playername" />
-			<input value="Add Player" type="submit" />
+			<input class="button" value="Add Player" type="submit" />
 		</form>
 	</div>
 </main>
