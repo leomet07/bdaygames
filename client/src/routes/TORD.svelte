@@ -1,6 +1,6 @@
 <script>
 	import Switch from "../components/Switch.svelte";
-
+	import { players } from "../stores";
 	let isMale = false;
 
 	let items = [];
@@ -30,27 +30,31 @@
 
 <div id="tord">
 	<h1 class="title">Truth Or Dare!</h1>
-	<div id="forwhoswitch">
-		<Switch bind:checked={isMale} />
-		<br />
-		{isMale ? "Lads" : "Gals"}
-	</div>
 
 	<div>
-		{#each items as item, index}
-			{#if (item.gender == "f" && !isMale) || (item.gender == "m" && isMale)}
-				<p id="tordtext">
-					<span class={"label" + item.type}
-						>{capatalizeFirstLetter(item.type)}:</span
-					>
-					<span class={"stylefor" + item.gender}>
-						{item.text}
-					</span>
-				</p>
-			{:else}
-				<div />
-			{/if}
-		{/each}
+		{#if $players.length < 2}
+			<h3>You need at least 2 people in the game to choose from</h3>
+		{:else}
+			<div id="forwhoswitch">
+				<h3 id="forwholabel">&nbsp;&nbsp;{isMale ? "Lads" : "Gals"}</h3>
+
+				<Switch bind:checked={isMale} />
+			</div>
+			{#each items as item, index}
+				{#if (item.gender == "f" && !isMale) || (item.gender == "m" && isMale)}
+					<p id="tordtext">
+						<span class={"label" + item.type}
+							>{capatalizeFirstLetter(item.type)}:</span
+						>
+						<span class={"stylefor" + item.gender}>
+							{item.text}
+						</span>
+					</p>
+				{:else}
+					<div />
+				{/if}
+			{/each}
+		{/if}
 	</div>
 </div>
 
@@ -107,5 +111,9 @@
 			text-align: left;
 			padding-left: 10vw;
 		}
+	}
+
+	#forwholabel {
+		margin-bottom: 5px;
 	}
 </style>

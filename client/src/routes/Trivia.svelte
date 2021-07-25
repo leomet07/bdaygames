@@ -37,7 +37,7 @@
 
 <main id="trivia">
 	<h1 class="title">Group Trivia</h1>
-
+	<h2 class="subtitle">Have some fun, even across catagories!</h2>
 	<!-- svelte-ignore a11y-no-onchange -->
 	<select id="change_catagory_selecter" on:change={change_catagory}>
 		<option value="any">Any Category</option>
@@ -93,6 +93,10 @@
 		.title {
 			text-align: left;
 			padding-left: 8vw;
+		}
+		.subtitle {
+			text-align: left;
+			padding-left: 1vw;
 		}
 
 		#change_catagory_selecter {

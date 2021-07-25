@@ -38,7 +38,7 @@
 <p id="question">Question: {@html questiontext}</p>
 
 <div id="bubbles">
-	{#each bubbles as bubble}
+	{#each bubbles as bubble, index}
 		<div class="bubblecontainer {revealed ? 'revealed' : ''}">
 			<span
 				class="bubbletext {bubble.correct
@@ -46,6 +46,7 @@
 					: 'incorrect_choice'}"
 				on:click={choose}
 			>
+				{index + 1}:
 				{@html bubble.text}
 			</span>
 			<br />
@@ -68,10 +69,11 @@
 		background-color: rgb(133, 255, 133);
 	}
 	.revealed > .incorrect_choice {
-		background-color: rgb(255, 72, 72);
+		background-color: rgb(255, 133, 133);
 	}
 
 	#question {
 		font-size: 18px;
+		font-weight: bold;
 	}
 </style>

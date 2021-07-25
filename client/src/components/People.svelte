@@ -39,7 +39,7 @@
 				<p>Add some of the players' names</p>
 			{/if}
 
-			<button on:click={increment}>Increment</button>
+			<button on:click={increment}>Next turn</button>
 		</div>
 
 		<form autocomplete="off" on:submit={addPlayer}>
