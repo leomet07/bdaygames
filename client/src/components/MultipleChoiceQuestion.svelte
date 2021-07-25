@@ -1,5 +1,6 @@
 <script>
 	import { triviaquestions } from "../stores";
+	import { shuffle } from "../shuffle";
 	export let index;
 
 	let revealed = false;
@@ -20,7 +21,7 @@
 
 		bubbles.push({ text: question.correct_answer, correct: true });
 
-		bubbles.sort(() => Math.random() - 0.5);
+		bubbles = shuffle(bubbles);
 	}
 
 	triviaquestions.subscribe(updatebubbles);

@@ -1,6 +1,6 @@
 <script>
 	import { players, turn_index } from "../stores";
-
+	import { shuffle } from "../shuffle.js";
 	let questions = [];
 	let chosennum = 0;
 	(async () => {
@@ -20,7 +20,7 @@
 
 		let json = await response.json();
 
-		return json.questions.sort(() => Math.random() - 0.5);
+		return shuffle(json.questions);
 	}
 
 	function getRandomInt(max) {

@@ -1,6 +1,7 @@
 <script>
 	import Switch from "../components/Switch.svelte";
 	import { players } from "../stores";
+	import { shuffle } from "../shuffle.js";
 	let isMale = false;
 
 	let items = [];
@@ -21,7 +22,7 @@
 		let json = await response.json();
 		console.log(json.items);
 
-		return json.items.sort(() => Math.random() - 0.5);
+		return shuffle(json.items);
 	}
 
 	function capatalizeFirstLetter(str) {
