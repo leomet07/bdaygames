@@ -1,6 +1,6 @@
 <h1>About</h1>
 
-<img id="logo" src="/img/bdaygames.png" alt="Bday games logo" />
+<img id="logo" src="/img/bdaygames.jpg" alt="Bday games logo" />
 <h2>A fun website for all of your party (and birthday) celebration needs!</h2>
 
 <h2>
