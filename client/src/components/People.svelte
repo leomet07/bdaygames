@@ -20,6 +20,13 @@
 			$turn_index = 0;
 		}
 	}
+
+	function removePlayer(index) {
+		console.log("remove player");
+		$players.splice(index, 1);
+		$players = $players;
+		$turn_index = 0;
+	}
 </script>
 
 <main id="people">
@@ -27,7 +34,15 @@
 		<h1>People</h1>
 		<div id="playersdiv">
 			{#each $players as player, index}
-				<p>Player #{index + 1}: {player.name}</p>
+				<p
+					class="player_display"
+					on:click={() => {
+						console.log("Clicked");
+						removePlayer(index);
+					}}
+				>
+					Player #{index + 1}: {player.name}
+				</p>
 			{/each}
 			{#if $players.length > 0}
 				<p>
@@ -79,5 +94,9 @@
 			margin-right: 10px;
 			margin-left: 5px;
 		}
+	}
+
+	.player_display:hover {
+		text-decoration: line-through;
 	}
 </style>
