@@ -35,13 +35,14 @@
 
 <main id="choose">
 	<h1 class="title">Chooser</h1>
-
+	<h2>Choose something that best fits the question!</h2>
+	<h2>When answered, press next turn on the sidebar!</h2>
 	{#if $players.length < 2}
 		<h3>You need at least 2 people in the game to choose from</h3>
 	{:else}
 		<h2>
 			{#if questions.length > 0}
-				{$players[$turn_index].name}, your random question is #{chosennum +
+				{$players[$turn_index].name}, your random "chooser" is #{chosennum +
 					1}, {questions[chosennum].question}
 			{:else}
 				<p>Loading</p>

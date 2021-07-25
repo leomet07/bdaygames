@@ -1,13 +1,14 @@
 <script>
 	import Switch from "../components/Switch.svelte";
-	import { players } from "../stores";
+	import { players, turn_index, isTORDmale } from "../stores";
 	import { shuffle } from "../shuffle.js";
-	let isMale = false;
 
+	let chosennum = 0;
 	let items = [];
 
 	(async () => {
 		items = await get_items({});
+		chosennum = getRandomInt(items.length);
 	})();
 
 	async function get_items(body) {
@@ -28,6 +29,18 @@
 	function capatalizeFirstLetter(str) {
 		return str.charAt(0).toUpperCase() + str.slice(1);
 	}
+
+	function getRandomInt(max) {
+		return Math.floor(Math.random() * max);
+	}
+
+	turn_index.subscribe((val) => {
+		chosennum = getRandomInt(items.length);
+	});
+
+	isTORDmale.subscribe((val) => {
+		chosennum = getRandomInt(items.length);
+	});
 </script>
 
 <div id="tord">
@@ -38,12 +51,22 @@
 			<h3>You need at least 2 people in the game to choose from</h3>
 		{:else}
 			<div id="forwhoswitch">
-				<h3 id="forwholabel">&nbsp;&nbsp;{isMale ? "Lads" : "Gals"}</h3>
+				<h3 id="forwholabel">
+					&nbsp;&nbsp;{$isTORDmale ? "Lads" : "Gals"}
+				</h3>
 
-				<Switch bind:checked={isMale} />
+				<Switch bind:checked={$isTORDmale} />
 			</div>
+
+			{#if items.length > 0}
+				{$players[$turn_index].name}, your random TORD is #{chosennum +
+					1}, {items[chosennum].text}
+			{:else}
+				<p>Loading</p>
+			{/if}
+
 			{#each items as item, index}
-				{#if (item.gender == "f" && !isMale) || (item.gender == "m" && isMale)}
+				{#if (item.gender == "f" && !$isTORDmale) || (item.gender == "m" && $isTORDmale)}
 					<p id="tordtext">
 						<span class={"label" + item.type}
 							>{capatalizeFirstLetter(item.type)}:</span
