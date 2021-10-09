@@ -45,7 +45,7 @@ async function get_items_handler(req, res, next) {
 
 // Question
 
-router.get("/get_questionss", get_questions_handler);
+router.get("/get_questions", get_questions_handler);
 router.post("/get_questions", get_questions_handler);
 // Create an item
 router.post("/create_question", async (req, res, next) => {
